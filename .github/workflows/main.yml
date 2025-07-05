@@ -42,6 +42,9 @@ jobs:
     - name: Install dependencies
       run: ${{ steps.lock-check.outputs.install_cmd }}
     
+    - name: Install web dependencies
+      run: npx expo install @expo/metro-runtime
+    
     - name: Run type checking
       run: |
         if npm run type-check --silent 2>/dev/null; then
@@ -111,6 +114,9 @@ jobs:
     - name: Setup Expo CLI
       run: npm install -g @expo/cli
     
+    - name: Install web dependencies
+      run: npx expo install @expo/metro-runtime
+    
     - name: Build for web with GitHub Pages fixes
       run: |
         npx expo export --platform web
@@ -167,6 +173,9 @@ jobs:
     - name: Install dependencies
       run: ${{ steps.lock-check.outputs.install_cmd }}
     
+    - name: Install web dependencies
+      run: npx expo install @expo/metro-runtime
+    
     - name: Build on EAS
       run: eas build --platform all --non-interactive
       env:
@@ -207,6 +216,9 @@ jobs:
     
     - name: Install dependencies
       run: ${{ steps.lock-check.outputs.install_cmd }}
+    
+    - name: Install web dependencies
+      run: npx expo install @expo/metro-runtime
     
     - name: Publish to Expo
       run: npx expo publish --non-interactive
@@ -250,6 +262,9 @@ jobs:
     
     - name: Setup Expo CLI
       run: npm install -g @expo/cli
+    
+    - name: Install web dependencies
+      run: npx expo install @expo/metro-runtime
     
     - name: Build for web
       run: npx expo export --platform web
