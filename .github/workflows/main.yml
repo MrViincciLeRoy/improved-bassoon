@@ -129,7 +129,7 @@ jobs:
       run: npm install -g @expo/cli
     
     - name: Install web dependencies
-      run: npx expo install @expo/metro-runtime --force
+      run: npm install @expo/metro-runtime --force --legacy-peer-deps --legacy-peer-deps --legacy-peer-deps --legacy-peer-deps --legacy-peer-deps
     
     - name: Build for web with GitHub Pages fixes
       run: |
@@ -195,7 +195,7 @@ jobs:
         fi
     
     - name: Install web dependencies
-      run: npx expo install @expo/metro-runtime --force
+      run: npm install @expo/metro-runtime --force --legacy-peer-deps --legacy-peer-deps --legacy-peer-deps --legacy-peer-deps --legacy-peer-deps
     
     - name: Build on EAS
       run: eas build --platform all --non-interactive
@@ -246,7 +246,7 @@ jobs:
         fi
     
     - name: Install web dependencies
-      run: npx expo install @expo/metro-runtime
+      run: npm install @expo/metro-runtime --force --legacy-peer-deps --legacy-peer-deps --legacy-peer-deps --legacy-peer-deps --legacy-peer-deps
     
     - name: Publish to Expo
       run: npx expo publish --non-interactive
