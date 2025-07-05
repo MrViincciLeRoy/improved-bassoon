@@ -26,7 +26,12 @@ jobs:
         cache: 'npm'
     
     - name: Install dependencies
-      run: npm ci
+      run: |
+        if [ -f package-lock.json ]; then
+          npm ci
+        else
+          npm install
+        fi
     
     - name: Run type checking
       run: npm run type-check
@@ -61,13 +66,25 @@ jobs:
         cache: 'npm'
     
     - name: Install dependencies
-      run: npm ci
+      run: |
+        if [ -f package-lock.json ]; then
+          npm ci
+        else
+          npm install
+        fi
     
     - name: Setup Expo CLI
       run: npm install -g @expo/cli
     
-    - name: Build for web
-      run: npx expo export --platform web
+    - name: Build for web with GitHub Pages fixes
+      run: |
+        npx expo export --platform web
+        # Create 404.html for GitHub Pages SPA routing
+        cp dist/index.html dist/404.html
+        # Add .nojekyll to prevent GitHub Pages from ignoring files with underscores
+        touch dist/.nojekyll
+        # List contents for debugging
+        ls -la dist/
     
     - name: Archive build artifacts
       uses: actions/upload-artifact@v3
@@ -99,7 +116,12 @@ jobs:
         token: ${{ secrets.EXPO_TOKEN }}
     
     - name: Install dependencies
-      run: npm ci
+      run: |
+        if [ -f package-lock.json ]; then
+          npm ci
+        else
+          npm install
+        fi
     
     - name: Build on EAS
       run: eas build --platform all --non-interactive
@@ -129,7 +151,12 @@ jobs:
         token: ${{ secrets.EXPO_TOKEN }}
     
     - name: Install dependencies
-      run: npm ci
+      run: |
+        if [ -f package-lock.json ]; then
+          npm ci
+        else
+          npm install
+        fi
     
     - name: Publish to Expo
       run: npx expo publish --non-interactive
