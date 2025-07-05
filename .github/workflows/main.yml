@@ -129,7 +129,7 @@ jobs:
       run: npm install -g @expo/cli
     
     - name: Install web dependencies
-      run: npx expo install @expo/metro-runtime
+      run: npx expo install @expo/metro-runtime --force
     
     - name: Build for web with GitHub Pages fixes
       run: |
@@ -195,7 +195,7 @@ jobs:
         fi
     
     - name: Install web dependencies
-      run: npx expo install @expo/metro-runtime
+      run: npx expo install @expo/metro-runtime --force
     
     - name: Build on EAS
       run: eas build --platform all --non-interactive
