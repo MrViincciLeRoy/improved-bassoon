@@ -140,12 +140,36 @@ expo-test-app/
 └── README.md              # This file
 ```
 
+## GitHub Pages Setup
+
+To enable GitHub Pages deployment:
+
+1. **Repository Settings**:
+   - Go to your repository settings
+   - Navigate to **Pages** section
+   - Set source to "GitHub Actions"
+
+2. **Update Repository Name**:
+   - In `app.json`, change the `baseUrl` from `/expo-test-app/` to `/your-repo-name/`
+   - This ensures assets load correctly on GitHub Pages
+
+3. **Custom Domain** (optional):
+   - Add a `CNAME` file to the root directory
+   - Update `baseUrl` in `app.json` to match your domain
+
+4. **Troubleshooting Blank Pages**:
+   - The workflow automatically creates a `.nojekyll` file
+   - Creates a `404.html` file for SPA routing
+   - Includes fallback loading screen
+
 ## Available Scripts
 
 - `npm start`: Start Expo development server
 - `npm run ios`: Run on iOS simulator
 - `npm run android`: Run on Android emulator
 - `npm run web`: Run in web browser
+- `npm run build:web`: Build for web deployment
+- `npm run build:gh-pages`: Build specifically for GitHub Pages
 - `npm test`: Run tests
 - `npm run test:watch`: Run tests in watch mode
 - `npm run test:coverage`: Run tests with coverage
