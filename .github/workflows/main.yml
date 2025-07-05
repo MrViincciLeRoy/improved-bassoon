@@ -30,7 +30,7 @@ jobs:
           echo "install_cmd=yarn install --frozen-lockfile" >> $GITHUB_OUTPUT
         else
           echo "lockfile=" >> $GITHUB_OUTPUT
-          echo "install_cmd=npm install" >> $GITHUB_OUTPUT
+          echo "install_cmd=npm install --legacy-peer-deps" >> $GITHUB_OUTPUT
         fi
     
     - name: Setup Node.js ${{ matrix.node-version }}
@@ -141,11 +141,14 @@ jobs:
       id: lock-check
       run: |
         if [ -f package-lock.json ]; then
+          echo "lockfile=npm" >> $GITHUB_OUTPUT
           echo "install_cmd=npm ci" >> $GITHUB_OUTPUT
         elif [ -f yarn.lock ]; then
+          echo "lockfile=yarn" >> $GITHUB_OUTPUT
           echo "install_cmd=yarn install --frozen-lockfile" >> $GITHUB_OUTPUT
         else
-          echo "install_cmd=npm install" >> $GITHUB_OUTPUT
+          echo "lockfile=" >> $GITHUB_OUTPUT
+          echo "install_cmd=npm install --legacy-peer-deps" >> $GITHUB_OUTPUT
         fi
     
     - name: Setup Node.js
@@ -187,7 +190,7 @@ jobs:
         elif [ -f yarn.lock ]; then
           echo "install_cmd=yarn install --frozen-lockfile" >> $GITHUB_OUTPUT
         else
-          echo "install_cmd=npm install" >> $GITHUB_OUTPUT
+          echo "install_cmd=npm install --legacy-peer-deps" >> $GITHUB_OUTPUT
         fi
     
     - name: Setup Node.js
@@ -242,7 +245,7 @@ jobs:
         elif [ -f yarn.lock ]; then
           yarn install --frozen-lockfile
         else
-          npm install
+          npm install --legacy-peer-deps
         fi
     
     - name: Setup Expo CLI
